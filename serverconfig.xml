@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <Server>
+    <Port>10300</Port>
+    <IP>0.0.0.0</IP>
+    <RegionIP>127.0.0.1</RegionIP>
+    <RegionPort>10400</RegionPort>
+    <UdpIP>0.0.0.0</UdpIP>
+    <UdpPort>10400</UdpPort>
+    <EnableUPnP>True</EnableUPnP>
+    <DetectRegionIP>True</DetectRegionIP>
+    <ServerName>${SERVER_NAME}</ServerName>
+    <ServerNameShort>${SERVER_NAME_SHORT}</ServerNameShort>
+    <LogConfigFile>./config/logconfig.xml</LogConfigFile>
+    <ScriptCompilationTarget>./lib/GameServerScripts.dll</ScriptCompilationTarget>
+    <ZoneConfigFile>./config/zones.xml</ZoneConfigFile>
+    <ScriptCompilationTarget>./lib/GameServerScripts.dll</ScriptCompilationTarget>
+    <ScriptAssemblies>DOLBase.dll,GameServer.dll,DOLDatabase.dll,System.dll,log4net.dll,System.Xml.dll</ScriptAssemblies>
+    <AutoAccountCreation>${AUTO_ACCOUNT_CREATION}</AutoAccountCreation>
+    <GameType>${SERVER_TYPE}</GameType>
+    <CheatLoggerName>cheats</CheatLoggerName>
+    <GMActionLoggerName>gmactions</GMActionLoggerName>
+    <InvalidNamesFile>./config/invalidnames.txt</InvalidNamesFile>
+    <DBType>MYSQL</DBType>
+    <DBConnectionString>server=${MYSQL_IP};port=3306;database=${MYSQL_DATABASE};user id=${MYSQL_USER};password=${MYSQL_PASSWORD};treattinyasboolean=False;pooling=${MYSQL_CONNECTION_POOLING}</DBConnectionString>
+    <DBAutosave>True</DBAutosave>
+    <DBAutosaveInterval>10</DBAutosaveInterval>
+    <CpuUse>4</CpuUse>
+  </Server>
+</root>

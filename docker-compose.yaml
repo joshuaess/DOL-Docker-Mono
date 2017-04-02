@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  mariadb:
+    image: dol_mariadb:latest
+    build:
+      context: .
+      dockerfile: mariadb.Dockerfile
+      args:
+        DB_FILE_URL: ${DB_FILE_URL}
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    volumes:
+      - "./mariadb:/var/lib/mysql:rw"
+  dol:
+    image: dol:latest
+    build:
+      context: .
+      dockerfile: dol.Dockerfile
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    ports:
+      - "10300:10300"
+      - "10400:10400/udp"
+    tty: true
+    volumes:
+      - "./dol/DOLBase:/root/dol/DOLBase"
+      - "./dol/DOLConfig:/root/dol/DOLConfig"
+      - "./dol/DOLDatabase:/root/dol/DOLDatabase"
+      - "./dol/DOLDatabaseTests:/root/dol/DOLDatabaseTests"
+      - "./dol/DOLServer:/root/dol/DOLServer"
+      - "./dol/GameServer:/root/dol/GameServer"
+      - "./dol/GameServerScripts:/root/dol/GameServerScripts"
+      - "./logs:/root/dol/Debug/logs:rw"
+      - "./dol/UnitTests:/root/dol/UnitTests"
