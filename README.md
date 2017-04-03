@@ -23,7 +23,10 @@ If you're running docker from OSX or Windows, I recommend changing the allotted 
 
 #### Build our Docker images and bring up dol and mariadb containers in -d detached mode
     docker-compose up -d
-You should now have a working dawn of light instance that you can connect to at localhost port 10300 (or the ip address of your server assuming that port 10300, 10400 are open on your server's firewall).
+After mariadb finishes running sql scripts, you should have a working dawn of light instance that you can connect to at localhost port 10300 (or the ip address of your server assuming that port 10300, 10400 are open on your server's firewall).
+
+## Mariadb automated database migrations/sql scripts
+The mariadb docker image that our compose file is using will execute all .sql files in the mariadb container's /docker-entrypoint-initdb.d directory on the container's first run (it checks if a database already exists on the filesystem). To avoid errors, the dawn of light server in the dol container is not started and is unavailable until sql migrations/scripts finish. This is accomplished by a netcat/sleep loop in the the dol-entrypoint.sh script.
 
 ## Default volume mounts
 The compose file is configured to mount these volumes from the docker host machine's file system to our containers:
