@@ -23,7 +23,15 @@ If you're running docker from OSX or Windows, I recommend changing the allotted 
 
 #### Build our Docker images and bring up dol and mariadb containers in -d detached mode
     docker-compose up -d
-You should now have a working dawn of light instance that you can connect to at localhost port 10300 (or the ip address of your server assuming that port 10300, 10400 are open on your server's firewall). Keep in mind that data from your database will persist to DOL-Docker-Mono/mariadb
+You should now have a working dawn of light instance that you can connect to at localhost port 10300 (or the ip address of your server assuming that port 10300, 10400 are open on your server's firewall).
+
+## Default volume mounts
+The compose file is configured to mount these volumes from the docker host machine's file system to our containers:
+* `DOL-Docker-Mono/mariadb` to `/var/lib/mysql` from the database container
+* `DOL-Docker-Mono/dol/*` to the code/scripts folders in `~/dol`
+* `DOL-Docker-Mono/logs` to `/root/dol/Debug/logs`
+
+Keep in mind that because of this, your database/dolcode will persist to these directories and mount those folders on new containers until you manually remove them on the host. Check docker-compose.yml or `docker inspect $CONTAINER_ID` for more info. 
 
 ## Troubleshooting
 #### Check your container status ( you should see dol and mariadb)
