@@ -42,9 +42,9 @@ CONTAINER ID        IMAGE                COMMAND                  CREATED       
 68095b004a29        dol:latest           "/dol-entrypoint.sh"     11 hours ago        Up 11 hours         0.0.0.0:10300->10300/tcp, 0.0.0.0:10400->10400/udp   mono_dol_1
 21d53b55e0ac        dol_mariadb:latest   "/mariadb-entrypoi..."   11 hours ago        Up 11 hours         0.0.0.0:3306->3306/tcp                               mono_mariadb_1
 ```
-#### Enter a shell on a container
+#### Start an interactive shell on a container
 	docker exec -ti 68095b004a29 bash
-#### If the containers died, try running `docker-compose up` without the -d flag to attach to the shell output sessions of each both containers.
+#### If the containers died, try running `docker-compose up` without the -d flag to attach to the shell output of both containers (Ctrl +c) to exit).
 	docker-compose up
 #### Take down your existing containers
 	docker-compose down
